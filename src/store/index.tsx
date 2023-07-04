@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { PropsWithChildren } from 'react';
 import { Provider, TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import userReducer from './reducers/user';
+import userReducer from './features/user';
 
 
 export const store = configureStore({

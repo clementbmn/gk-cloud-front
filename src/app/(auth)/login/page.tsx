@@ -1,10 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { RootState, useAppDispatch, useAppSelector } from '@/store';
+import { setJwt, setUser } from '@/store/features/user';
 
 export default function LoginPage() {
   const [ email, setEmail ] = useState<string>('');
   const [ password, setPassword ] = useState<string>('');
+  const dispatch = useAppDispatch();
+  const jwt = useAppSelector((state: RootState) => state.user.jwt);
+
+  useEffect(() => {
+    console.log('jwt changed', jwt);
+  }, [ jwt ]);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,6 +27,8 @@ export default function LoginPage() {
       })
     });
     const result = await data.json();
+    dispatch(setJwt(result.jwt));
+    dispatch(setUser(result.user));
     alert('result' + JSON.stringify(result));
   };
 
