@@ -3,15 +3,19 @@
 import { useEffect, useState } from 'react';
 import { RootState, useAppDispatch, useAppSelector } from '@/store';
 import { setJwt, setUser } from '@/store/features/user';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [ email, setEmail ] = useState<string>('');
   const [ password, setPassword ] = useState<string>('');
   const dispatch = useAppDispatch();
   const jwt = useAppSelector((state: RootState) => state.user.jwt);
+  const { push } = useRouter();
 
   useEffect(() => {
-    console.log('jwt changed', jwt);
+    if (jwt !== undefined) {
+      push('/dashboard');
+    }
   }, [ jwt ]);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {

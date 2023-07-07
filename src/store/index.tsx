@@ -1,14 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { PropsWithChildren } from 'react';
 import { Provider, TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import storage from 'redux-persist/lib/storage'
+import { persistReducer, persistStore } from 'redux-persist';
+
 import userReducer from './features/user';
 
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, combineReducers({
+  user: userReducer,
+}))
 
 export const store = configureStore({
-  reducer: {
-    user: userReducer,
-  },
+  reducer: persistedReducer,
 })
+export const persistor = persistStore(store)
 
 export function ReduxProvider({ children }: PropsWithChildren) {
   return (

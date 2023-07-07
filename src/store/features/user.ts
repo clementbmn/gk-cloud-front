@@ -1,25 +1,10 @@
 import { createSlice, Draft } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit'
-
-export interface User {
-  id: number;
-  username: string;
-  email: string;
-  provider: string;
-  confirmed: boolean;
-  blocked: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-  firstname: string;
-  lastname: string;
-  phone: string;
-  country: string;
-  type: string;
-}
+import { User } from '@/app/types';
 
 export interface UserState {
-  jwt: string;
-  user: User;
+  jwt: string | undefined;
+  user: User | undefined;
 }
 
 export const userSlice = createSlice({
@@ -32,10 +17,14 @@ export const userSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
+    logout: (state) => {
+      state.jwt = undefined;
+      state.user = undefined;
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setJwt, setUser } = userSlice.actions
+export const { setJwt, setUser, logout } = userSlice.actions
 
 export default userSlice.reducer

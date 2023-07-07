@@ -3,18 +3,19 @@ import { Inter } from 'next/font/google'
 import { Metadata } from 'next';
 
 import Providers from './providers';
+import { ReactNode } from 'react';
 
 const inter = Inter({ subsets: [ 'latin' ] });
 
 export const metadata: Metadata = {
-  title: 'GK-Concept - Cloud Front',
-  description: 'GK_Concept Cloud web application to manage the devices and the data associated to it',
+  title: 'GKConcept - Cloud Front',
+  description: 'GKConcept Cloud web application to manage the devices and the data associated to it',
 }
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <html lang="en">
