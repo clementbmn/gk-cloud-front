@@ -1,6 +1,6 @@
 'use client';
 
-import type { Report } from '@/app/types';
+import type { Report } from '@/types/types';
 import { RootState, useAppSelector } from '@/store';
 import { useCallback, useEffect, useState } from 'react';
 

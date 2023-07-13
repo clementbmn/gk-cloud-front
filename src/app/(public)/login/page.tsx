@@ -10,11 +10,11 @@ export default function LoginPage() {
   const [ password, setPassword ] = useState<string>('');
   const dispatch = useAppDispatch();
   const jwt = useAppSelector((state: RootState) => state.user.jwt);
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   useEffect(() => {
     if (jwt !== undefined) {
-      push('/dashboard');
+      replace('/dashboard');
     }
   }, [ jwt ]);
 

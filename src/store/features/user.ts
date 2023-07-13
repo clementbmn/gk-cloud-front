@@ -1,6 +1,6 @@
 import { createSlice, Draft } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { User } from '@/app/types';
+import { User } from '@/types/types';
 
 export interface UserState {
   jwt: string | undefined;
@@ -8,7 +8,7 @@ export interface UserState {
 }
 
 export const userSlice = createSlice({
-  name: 'counter',
+  name: 'user',
   initialState: {} as UserState,
   reducers: {
     setJwt: (state, action: PayloadAction<string>) => {

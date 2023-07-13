@@ -1,7 +1,7 @@
 'use client';
 
 import { RootState, useAppSelector } from '@/store';
-import type { Report } from '@/app/types';
+import type { Report } from '@/types/types';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 

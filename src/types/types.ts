@@ -1,8 +1,21 @@
+export interface Attribute {
+  id: number;
+  attributes: {
+    type: string;
+    name: string;
+    value: string;
+  };
+}
+
 export interface Device {
   id: number;
   attributes: {
     serialNumber: string;
-  };
+    type: string;
+    properties: {
+      data: Attribute[];
+    };
+  }
 }
 
 export interface Company {
@@ -42,3 +55,11 @@ export interface User {
   type: string;
 }
 
+export interface Content {
+  id: number;
+  attributes: {
+    metadata: string;
+    fileUri: string | null;
+    type: string;
+  }
+}

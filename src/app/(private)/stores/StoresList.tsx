@@ -1,7 +1,7 @@
 'use client';
 
 import { RootState, useAppSelector } from '@/store';
-import type { Store } from '@/app/types';
+import type { Store } from '@/types/types';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
