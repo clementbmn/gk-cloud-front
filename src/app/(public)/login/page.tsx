@@ -21,11 +21,9 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = await login({ identifier: email, password });
-    const result = await data.data;
+    const result = await login({ identifier: email, password });
     dispatch(setJwt(result.jwt));
     dispatch(setUser(result.user));
-    alert('result' + JSON.stringify(result));
   };
 
   return (
