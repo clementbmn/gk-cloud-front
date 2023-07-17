@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { RootState, useAppDispatch, useAppSelector } from '@/store';
 import { setJwt, setUser } from '@/store/features/user';
 import { useRouter } from 'next/navigation';
+import { login } from '@/services/api';
 
 export default function LoginPage() {
   const [ email, setEmail ] = useState<string>('');
@@ -20,17 +21,8 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = await fetch('http://localhost:1337/api/auth/local', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        identifier: email,
-        password,
-      })
-    });
-    const result = await data.json();
+    const data = await login({ identifier: email, password });
+    const result = await data.data;
     dispatch(setJwt(result.jwt));
     dispatch(setUser(result.user));
     alert('result' + JSON.stringify(result));

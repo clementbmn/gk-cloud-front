@@ -13,7 +13,7 @@ const routes = [
 export default function Sidebar() {
 
   return (
-    <nav className={'bg-blue-50 h-full w-[200px] pl-[20px] pt-[20px]'}>
+    <nav className={'bg-blue-50 h-full min-w-[200px] pl-[20px] pt-[20px]'}>
       <h2 className={'text-2xl font-bold mb-5'}>GK Concept</h2>
       <ul>
         {routes.map(({ name, path}: { name: string, path: string }) => (

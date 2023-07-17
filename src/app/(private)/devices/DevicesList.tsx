@@ -4,22 +4,20 @@ import { RootState, useAppSelector } from '@/store';
 import type { Device } from '@/types/types';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { fetchDevices } from '@/services/api';
 
 export default function DevicesList() {
   const jwt = useAppSelector((state: RootState) => state.user.jwt);
   const [ devices, setDevices ] = useState<[Device] | null>(null);
 
-  const fetchDevices = async () => {
-    const result = await fetch('http://localhost:1337/api/devices', {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
-    setDevices((await result.json()).data);
+  const _fetchDevices = async () => {
+    if (!jwt) return;
+    const data = await fetchDevices(jwt);
+    setDevices(data.data);
   };
 
   useEffect(() => {
-    fetchDevices();
+    _fetchDevices();
   }, []);
 
   return (

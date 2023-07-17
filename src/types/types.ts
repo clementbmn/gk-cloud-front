@@ -63,3 +63,12 @@ export interface Content {
     type: string;
   }
 }
+
+export interface Comment {
+  id: number;
+  attributes: {
+    title: string;
+    body: string;
+    device: Device;
+  }
+}
