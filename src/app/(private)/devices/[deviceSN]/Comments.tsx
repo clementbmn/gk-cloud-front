@@ -45,8 +45,10 @@ export default function Comments({ deviceId }: { deviceId: number }) {
   async function _fetchComments() {
     if (!jwt) return;
     const data = await fetchComments(jwt, deviceId);
-    const comments = data.data as Comment[];
-    setComments(comments);
+    if (data?.data) {
+      const comments = data.data as Comment[];
+      setComments(comments);
+    }
   }
 
   useEffect(() => {
